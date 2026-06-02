@@ -1,0 +1,424 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		11B68F109071F8156F3D9801 /* RSVPEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B6DFA3F3DED1C34DEF0677 /* RSVPEngine.swift */; };
+		256B1E488BBCCF3FC02826EE /* NotchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9281CE957919DADA071A48B6 /* NotchContentView.swift */; };
+		2F75889523717A15345B1F1B /* RegionSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0325B44C43C8FD53EA484C /* RegionSelector.swift */; };
+		3AE66BCBBD2F53D78A01A088 /* NSScreen+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BA7B6042483EA7FDE3DB4C /* NSScreen+Display.swift */; };
+		486C28C40FF25ECD70E3247A /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5656DD5529F7E386C7EF3352 /* NotchShape.swift */; };
+		51BD5B31D6DFA7222F91083F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F32CDEDBBF59CCFADB553A2 /* AppDelegate.swift */; };
+		68F133811556DB3B9E923337 /* TextRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE828390F426256F96762EA /* TextRecognizer.swift */; };
+		7D9D57A07EE7AE992EAA07DC /* GlobalHotkey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9952E68B38DDE10781C0C4B /* GlobalHotkey.swift */; };
+		9C013103C627ED033C5B1B6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9700B08A4B822A0F92D9465F /* Assets.xcassets */; };
+		A52B29FF0CB308F1B1CF1FF6 /* NotchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2D86D68388A8B281109FBD /* NotchViewModel.swift */; };
+		A78395C4F95362750A442F51 /* NotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C5442603E47C11E62FA780 /* NotchView.swift */; };
+		C441D7F2538077C088FF8EF1 /* RSVP_OSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1BE36387430A2E7DF2C706 /* RSVP_OSApp.swift */; };
+		D2D4AAD8DE5C5F94988BEA22 /* NotchMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1FC25129FFF2CA08BECF1 /* NotchMetrics.swift */; };
+		D5371169F627703ADB435A7B /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1421DB84EF008BB9D3250A /* AppController.swift */; };
+		F1B0D80BBA7C9C85C7D2354F /* RSVPWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA130F8C60E89D897CD26570 /* RSVPWordView.swift */; };
+		F3F12425E9CC44996B73B8B9 /* ScreenCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A871FC46B50DA998FF0DD4A5 /* ScreenCapture.swift */; };
+		F8B01E9E20BEC4E5E6950884 /* RSVPText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CBEB895295EF11DFA56267 /* RSVPText.swift */; };
+		FF4EB19CED6D00473CFA0F64 /* NotchPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A47B2568B08A3F3519889A8 /* NotchPanel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		064F2F493D48937E8DD1B237 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0A0325B44C43C8FD53EA484C /* RegionSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelector.swift; sourceTree = "<group>"; };
+		0F32CDEDBBF59CCFADB553A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5656DD5529F7E386C7EF3352 /* NotchShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchShape.swift; sourceTree = "<group>"; };
+		5A47B2568B08A3F3519889A8 /* NotchPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchPanel.swift; sourceTree = "<group>"; };
+		8B1421DB84EF008BB9D3250A /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		9281CE957919DADA071A48B6 /* NotchContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchContentView.swift; sourceTree = "<group>"; };
+		96BA7B6042483EA7FDE3DB4C /* NSScreen+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSScreen+Display.swift"; sourceTree = "<group>"; };
+		9700B08A4B822A0F92D9465F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A0B6DFA3F3DED1C34DEF0677 /* RSVPEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSVPEngine.swift; sourceTree = "<group>"; };
+		A871FC46B50DA998FF0DD4A5 /* ScreenCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenCapture.swift; sourceTree = "<group>"; };
+		A9CBEB895295EF11DFA56267 /* RSVPText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSVPText.swift; sourceTree = "<group>"; };
+		AB2D86D68388A8B281109FBD /* NotchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchViewModel.swift; sourceTree = "<group>"; };
+		BE1BE36387430A2E7DF2C706 /* RSVP_OSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSVP_OSApp.swift; sourceTree = "<group>"; };
+		D4B1FC25129FFF2CA08BECF1 /* NotchMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchMetrics.swift; sourceTree = "<group>"; };
+		E9952E68B38DDE10781C0C4B /* GlobalHotkey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotkey.swift; sourceTree = "<group>"; };
+		EA130F8C60E89D897CD26570 /* RSVPWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSVPWordView.swift; sourceTree = "<group>"; };
+		EAE828390F426256F96762EA /* TextRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizer.swift; sourceTree = "<group>"; };
+		F782775EEB12FEDE5912CBB9 /* RSVP-OS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RSVP-OS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8C5442603E47C11E62FA780 /* NotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0426EDA0B5B14920212F6621 = {
+			isa = PBXGroup;
+			children = (
+				05C04A7576FDE783DA4F4C03 /* Sources */,
+				FFBD6740624053F9E399E5A3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		05C04A7576FDE783DA4F4C03 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9700B08A4B822A0F92D9465F /* Assets.xcassets */,
+				064F2F493D48937E8DD1B237 /* Info.plist */,
+				EF4183FA8360365D421E6495 /* App */,
+				8C3C6E34D1A274084F4EB0B2 /* Capture */,
+				E6EE8C1EFC1EF7B7F68F7040 /* Hotkey */,
+				1855268B5B77810B1C62D288 /* Notch */,
+				CD62AE3DC897C37EFE35A019 /* OCR */,
+				91EF9559E898DB50095720E1 /* RSVP */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		1855268B5B77810B1C62D288 /* Notch */ = {
+			isa = PBXGroup;
+			children = (
+				9281CE957919DADA071A48B6 /* NotchContentView.swift */,
+				D4B1FC25129FFF2CA08BECF1 /* NotchMetrics.swift */,
+				5A47B2568B08A3F3519889A8 /* NotchPanel.swift */,
+				5656DD5529F7E386C7EF3352 /* NotchShape.swift */,
+				F8C5442603E47C11E62FA780 /* NotchView.swift */,
+				AB2D86D68388A8B281109FBD /* NotchViewModel.swift */,
+			);
+			path = Notch;
+			sourceTree = "<group>";
+		};
+		8C3C6E34D1A274084F4EB0B2 /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+				96BA7B6042483EA7FDE3DB4C /* NSScreen+Display.swift */,
+				0A0325B44C43C8FD53EA484C /* RegionSelector.swift */,
+				A871FC46B50DA998FF0DD4A5 /* ScreenCapture.swift */,
+			);
+			path = Capture;
+			sourceTree = "<group>";
+		};
+		91EF9559E898DB50095720E1 /* RSVP */ = {
+			isa = PBXGroup;
+			children = (
+				A0B6DFA3F3DED1C34DEF0677 /* RSVPEngine.swift */,
+				A9CBEB895295EF11DFA56267 /* RSVPText.swift */,
+				EA130F8C60E89D897CD26570 /* RSVPWordView.swift */,
+			);
+			path = RSVP;
+			sourceTree = "<group>";
+		};
+		CD62AE3DC897C37EFE35A019 /* OCR */ = {
+			isa = PBXGroup;
+			children = (
+				EAE828390F426256F96762EA /* TextRecognizer.swift */,
+			);
+			path = OCR;
+			sourceTree = "<group>";
+		};
+		E6EE8C1EFC1EF7B7F68F7040 /* Hotkey */ = {
+			isa = PBXGroup;
+			children = (
+				E9952E68B38DDE10781C0C4B /* GlobalHotkey.swift */,
+			);
+			path = Hotkey;
+			sourceTree = "<group>";
+		};
+		EF4183FA8360365D421E6495 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8B1421DB84EF008BB9D3250A /* AppController.swift */,
+				0F32CDEDBBF59CCFADB553A2 /* AppDelegate.swift */,
+				BE1BE36387430A2E7DF2C706 /* RSVP_OSApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		FFBD6740624053F9E399E5A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F782775EEB12FEDE5912CBB9 /* RSVP-OS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		122A123B8CE46CF0B7BB4718 /* RSVP-OS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C34A8DBEE796F5AFB6F43CA8 /* Build configuration list for PBXNativeTarget "RSVP-OS" */;
+			buildPhases = (
+				36601BB3995EAD76A0F76991 /* Sources */,
+				5FF730B6FF1A18CCF25C8112 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "RSVP-OS";
+			packageProductDependencies = (
+			);
+			productName = "RSVP-OS";
+			productReference = F782775EEB12FEDE5912CBB9 /* RSVP-OS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EE22057DF6B780AA58E98C5C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					122A123B8CE46CF0B7BB4718 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 7E43A0CA30854C4068C94B40 /* Build configuration list for PBXProject "RSVP-OS" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 0426EDA0B5B14920212F6621;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = FFBD6740624053F9E399E5A3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				122A123B8CE46CF0B7BB4718 /* RSVP-OS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5FF730B6FF1A18CCF25C8112 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C013103C627ED033C5B1B6B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		36601BB3995EAD76A0F76991 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5371169F627703ADB435A7B /* AppController.swift in Sources */,
+				51BD5B31D6DFA7222F91083F /* AppDelegate.swift in Sources */,
+				7D9D57A07EE7AE992EAA07DC /* GlobalHotkey.swift in Sources */,
+				3AE66BCBBD2F53D78A01A088 /* NSScreen+Display.swift in Sources */,
+				256B1E488BBCCF3FC02826EE /* NotchContentView.swift in Sources */,
+				D2D4AAD8DE5C5F94988BEA22 /* NotchMetrics.swift in Sources */,
+				FF4EB19CED6D00473CFA0F64 /* NotchPanel.swift in Sources */,
+				486C28C40FF25ECD70E3247A /* NotchShape.swift in Sources */,
+				A78395C4F95362750A442F51 /* NotchView.swift in Sources */,
+				A52B29FF0CB308F1B1CF1FF6 /* NotchViewModel.swift in Sources */,
+				11B68F109071F8156F3D9801 /* RSVPEngine.swift in Sources */,
+				F8B01E9E20BEC4E5E6950884 /* RSVPText.swift in Sources */,
+				F1B0D80BBA7C9C85C7D2354F /* RSVPWordView.swift in Sources */,
+				C441D7F2538077C088FF8EF1 /* RSVP_OSApp.swift in Sources */,
+				2F75889523717A15345B1F1B /* RegionSelector.swift in Sources */,
+				F3F12425E9CC44996B73B8B9 /* ScreenCapture.swift in Sources */,
+				68F133811556DB3B9E923337 /* TextRecognizer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		20F03BC3757BAD149A8A83A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rsvpos.app;
+				PRODUCT_NAME = "RSVP-OS";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		36D8884DDAEBB44EC4A48095 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		3E93EA7C393137EA6027C152 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		BAE2BC188FAEFF9F9249A168 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rsvpos.app;
+				PRODUCT_NAME = "RSVP-OS";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7E43A0CA30854C4068C94B40 /* Build configuration list for PBXProject "RSVP-OS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36D8884DDAEBB44EC4A48095 /* Debug */,
+				3E93EA7C393137EA6027C152 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C34A8DBEE796F5AFB6F43CA8 /* Build configuration list for PBXNativeTarget "RSVP-OS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BAE2BC188FAEFF9F9249A168 /* Debug */,
+				20F03BC3757BAD149A8A83A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EE22057DF6B780AA58E98C5C /* Project object */;
+}
