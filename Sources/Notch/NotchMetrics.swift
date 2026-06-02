@@ -11,8 +11,8 @@ enum NotchMetrics {
     /// The hosting window. Slightly larger than `openSize` to leave room for the shadow.
     static let windowSize = CGSize(width: 760, height: 300)
 
-    /// Inset so controls clear the rounded bottom corners of the notch shape.
-    static let openBottomInset: CGFloat = 22
+    /// Uniform inset from content to the notch edges (horizontal and bottom match).
+    static let contentInset: CGFloat = 24
 
     static let closedTopCornerRadius: CGFloat = 8
     static let closedBottomCornerRadius: CGFloat = 12

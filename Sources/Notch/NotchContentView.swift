@@ -7,11 +7,13 @@ struct NotchContentView: View {
     @EnvironmentObject var notch: NotchViewModel
     @FocusState private var keyboardFocused: Bool
 
+    private let inset = NotchMetrics.contentInset
+
     var body: some View {
         content
-            .padding(.horizontal, 24)
-            .padding(.top, 10)
-            .padding(.bottom, NotchMetrics.openBottomInset)
+            .padding(.horizontal, inset)
+            .padding(.top, inset * 0.5)
+            .padding(.bottom, inset)
             .frame(width: NotchMetrics.openSize.width, height: NotchMetrics.openSize.height, alignment: .top)
             .clipped()
             .focusable()
@@ -46,14 +48,14 @@ struct NotchContentView: View {
     }
 
     private var bottomBar: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: inset * 0.5) {
             progressBar
             controlStrip
         }
     }
 
     private var progressBar: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: 6) {
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
                     Capsule().fill(Color.primary.opacity(0.1))
@@ -81,32 +83,11 @@ struct NotchContentView: View {
         }
     }
 
-    /// Flat, native-style transport row — no container chrome.
+    /// Transport left, close right, WPM truly centered via overlay.
     private var controlStrip: some View {
-        HStack(spacing: 0) {
-            HStack(spacing: 20) {
-                NotchControlButton("backward.fill", label: "Previous word") {
-                    engine.step(by: -1)
-                }
-
-                Button(action: { engine.togglePlay() }) {
-                    Image(systemName: engine.isPlaying ? "pause.fill" : "play.fill")
-                        .font(.system(size: 15, weight: .semibold))
-                        .foregroundStyle(Color.accentColor)
-                }
-                .buttonStyle(.plain)
-                .help(engine.isPlaying ? "Pause" : "Play")
-                .accessibilityLabel(engine.isPlaying ? "Pause" : "Play")
-
-                NotchControlButton("forward.fill", label: "Next word") {
-                    engine.step(by: 1)
-                }
-            }
-
-            Spacer(minLength: 16)
-
+        ZStack {
             HStack(spacing: 6) {
-                NotchControlButton("minus", label: "Slower", size: 11) {
+                NotchControlButton("minus", label: "Slower", size: 10) {
                     engine.adjustWPM(by: -RSVPEngine.wpmStep)
                 }
 
@@ -114,16 +95,39 @@ struct NotchContentView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .monospacedDigit()
+                    .frame(minWidth: 64)
 
-                NotchControlButton("plus", label: "Faster", size: 11) {
+                NotchControlButton("plus", label: "Faster", size: 10) {
                     engine.adjustWPM(by: RSVPEngine.wpmStep)
                 }
             }
 
-            Spacer(minLength: 16)
+            HStack {
+                HStack(spacing: 18) {
+                    NotchControlButton("backward.fill", label: "Previous word") {
+                        engine.step(by: -1)
+                    }
 
-            NotchControlButton("xmark", label: "Close", size: 11, emphasis: .subtle) {
-                AppController.shared?.closeNotch()
+                    Button(action: { engine.togglePlay() }) {
+                        Image(systemName: engine.isPlaying ? "pause.fill" : "play.fill")
+                            .font(.system(size: 13, weight: .semibold))
+                            .foregroundStyle(Color.accentColor)
+                            .frame(width: 22, height: 22)
+                    }
+                    .buttonStyle(.plain)
+                    .help(engine.isPlaying ? "Pause" : "Play")
+                    .accessibilityLabel(engine.isPlaying ? "Pause" : "Play")
+
+                    NotchControlButton("forward.fill", label: "Next word") {
+                        engine.step(by: 1)
+                    }
+                }
+
+                Spacer(minLength: 0)
+
+                NotchControlButton("xmark", label: "Close", size: 10, emphasis: .subtle) {
+                    AppController.shared?.closeNotch()
+                }
             }
         }
         .frame(height: 22)
@@ -174,7 +178,6 @@ struct NotchContentView: View {
             .controlSize(.small)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.horizontal, 16)
     }
 
     private func handleKey(_ press: KeyPress) -> KeyPress.Result {
@@ -190,6 +193,12 @@ struct NotchContentView: View {
             return .handled
         case .rightArrow:
             engine.step(by: 1)
+            return .handled
+        case .upArrow:
+            engine.adjustWPM(by: RSVPEngine.wpmStep)
+            return .handled
+        case .downArrow:
+            engine.adjustWPM(by: -RSVPEngine.wpmStep)
             return .handled
         default:
             if press.characters == "+" || press.characters == "=" {
@@ -236,8 +245,8 @@ private struct NotchControlButton: View {
 
     private var baseOpacity: Double {
         switch emphasis {
-        case .normal: 0.75
-        case .subtle: 0.55
+        case .normal: 0.7
+        case .subtle: 0.5
         }
     }
 
@@ -245,7 +254,7 @@ private struct NotchControlButton: View {
         Button(action: action) {
             Image(systemName: systemName)
                 .font(.system(size: size, weight: .medium))
-                .foregroundStyle(.secondary.opacity(isHovered ? 1 : baseOpacity))
+                .foregroundStyle(.secondary.opacity(isHovered ? 0.95 : baseOpacity))
                 .frame(width: 22, height: 22)
                 .contentShape(Rectangle())
         }
