@@ -133,7 +133,7 @@ private final class SelectionView: NSView {
         ctx.fill(currentRect)
         ctx.setBlendMode(.normal)
 
-        ctx.setStrokeColor(NSColor(red: 1.0, green: 0.27, blue: 0.27, alpha: 1.0).cgColor)
+        ctx.setStrokeColor(NSColor.controlAccentColor.cgColor)
         ctx.setLineWidth(1.5)
         ctx.stroke(currentRect.insetBy(dx: 0.75, dy: 0.75))
     }

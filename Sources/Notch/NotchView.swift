@@ -10,26 +10,32 @@ struct NotchView: View {
         notch.isOpen ? NotchMetrics.openSize : NotchMetrics.closedSize
     }
 
+    private var notchShape: NotchShape {
+        NotchShape(
+            topCornerRadius: notch.isOpen ? NotchMetrics.openTopCornerRadius : NotchMetrics.closedTopCornerRadius,
+            bottomCornerRadius: notch.isOpen ? NotchMetrics.openBottomCornerRadius : NotchMetrics.closedBottomCornerRadius
+        )
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             ZStack(alignment: .top) {
-                NotchShape(
-                    topCornerRadius: notch.isOpen ? NotchMetrics.openTopCornerRadius : NotchMetrics.closedTopCornerRadius,
-                    bottomCornerRadius: notch.isOpen ? NotchMetrics.openBottomCornerRadius : NotchMetrics.closedBottomCornerRadius
-                )
-                .fill(.black)
-                .frame(width: size.width, height: size.height)
-                .shadow(color: .black.opacity(notch.isOpen ? 0.55 : 0.0), radius: 10, y: 5)
+                notchShape
+                    .fill(.black)
+                    .frame(width: size.width, height: size.height)
+                    .shadow(color: .black.opacity(notch.isOpen ? 0.55 : 0.0), radius: 10, y: 5)
 
                 if notch.isOpen {
                     NotchContentView()
                         .transition(.opacity.combined(with: .scale(scale: 0.92, anchor: .top)))
                 }
             }
+            .clipShape(notchShape)
             Spacer(minLength: 0)
         }
         .frame(width: NotchMetrics.windowSize.width, height: NotchMetrics.windowSize.height, alignment: .top)
         .animation(.spring(response: 0.42, dampingFraction: 0.82), value: notch.isOpen)
+        .tint(.accentColor)
         .preferredColorScheme(.dark)
     }
 }

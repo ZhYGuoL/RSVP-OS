@@ -6,10 +6,13 @@ enum NotchMetrics {
     static let closedSize = CGSize(width: 210, height: 32)
 
     /// Expanded panel that hosts the RSVP reader.
-    static let openSize = CGSize(width: 720, height: 250)
+    static let openSize = CGSize(width: 720, height: 280)
 
     /// The hosting window. Slightly larger than `openSize` to leave room for the shadow.
-    static let windowSize = CGSize(width: 760, height: 300)
+    static let windowSize = CGSize(width: 760, height: 330)
+
+    /// Extra inset so controls clear the rounded bottom corners of the notch.
+    static let openBottomInset: CGFloat = 20
 
     static let closedTopCornerRadius: CGFloat = 8
     static let closedBottomCornerRadius: CGFloat = 12
