@@ -84,4 +84,23 @@ enum RSVPText {
         let seconds = Int(ceil(Double(remainingWords) / wpm * 60.0))
         return String(format: "%d:%02d", seconds / 60, seconds % 60)
     }
+
+    /// Extract a window of words centered on `centerIdx`. Returns the slice and
+    /// the focused word's index within it. Mirrors `extractWordFrame` from the
+    /// reference web app.
+    static func extractWordFrame(
+        _ allWords: [String],
+        centerIdx: Int,
+        frameSize: Int
+    ) -> (subset: [String], centerOffset: Int) {
+        guard frameSize > 1, centerIdx >= 0, centerIdx < allWords.count else {
+            let word = centerIdx >= 0 && centerIdx < allWords.count ? allWords[centerIdx] : ""
+            return ([word], 0)
+        }
+
+        let radius = frameSize / 2
+        let left = max(0, centerIdx - radius)
+        let right = min(allWords.count, centerIdx + radius + 1)
+        return (Array(allWords[left..<right]), centerIdx - left)
+    }
 }

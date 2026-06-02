@@ -42,7 +42,11 @@ struct NotchContentView: View {
     /// Word fills the upper area; progress and controls are pinned to the bottom.
     private var reader: some View {
         VStack(spacing: 0) {
-            RSVPWordView(word: engine.currentWord)
+            RSVPWordView(
+                word: engine.currentWord,
+                wordsBefore: engine.contextWordsBefore,
+                wordsAfter: engine.contextWordsAfter
+            )
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .layoutPriority(-1)
 
