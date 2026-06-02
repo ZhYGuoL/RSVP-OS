@@ -7,14 +7,16 @@ struct NotchContentView: View {
     @EnvironmentObject var notch: NotchViewModel
     @FocusState private var keyboardFocused: Bool
 
-    private let inset = NotchMetrics.contentInset
+    private let bottomInset = NotchMetrics.bottomInset
+    private let sideInset = NotchMetrics.sideInset
 
     var body: some View {
         content
-            .padding(.horizontal, inset)
-            .padding(.top, inset * 0.5)
-            .padding(.bottom, inset)
-            .frame(width: NotchMetrics.openSize.width, height: NotchMetrics.openSize.height, alignment: .top)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .padding(.horizontal, sideInset)
+            .padding(.top, bottomInset * 0.5)
+            .padding(.bottom, bottomInset)
+            .frame(width: NotchMetrics.openSize.width, height: NotchMetrics.openSize.height)
             .clipped()
             .focusable()
             .focused($keyboardFocused)
@@ -48,7 +50,7 @@ struct NotchContentView: View {
     }
 
     private var bottomBar: some View {
-        VStack(spacing: inset * 0.5) {
+        VStack(spacing: bottomInset * 0.5) {
             progressBar
             controlStrip
         }
