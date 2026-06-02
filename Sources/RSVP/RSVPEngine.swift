@@ -26,8 +26,8 @@ final class RSVPEngine: ObservableObject {
     static let maxWPM: Double = 800
     static let wpmStep: Double = 25
 
-    /// Words shown on each side of the focused word (frame size = radius * 2 + 1).
-    static let contextRadius = 2
+    /// Words shown on each side of the focused word; extra words clip at notch edges.
+    static let contextRadius = 4
 
     var contextWordsBefore: [String] {
         guard index > 0 else { return [] }

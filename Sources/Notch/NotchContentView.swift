@@ -13,7 +13,6 @@ struct NotchContentView: View {
     var body: some View {
         content
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .padding(.horizontal, sideInset)
             .padding(.top, bottomInset * 0.5)
             .padding(.bottom, bottomInset)
             .frame(width: NotchMetrics.openSize.width, height: NotchMetrics.openSize.height)
@@ -30,16 +29,19 @@ struct NotchContentView: View {
         switch notch.status {
         case .capturing:
             statusView(systemImage: "viewfinder", text: "Select a region\u{2026}")
+                .padding(.horizontal, sideInset)
         case .recognizing:
             progressView(text: "Reading text\u{2026}")
+                .padding(.horizontal, sideInset)
         case .message(let message):
             messageView(message)
+                .padding(.horizontal, sideInset)
         case .idle, .reading:
             reader
         }
     }
 
-    /// Word fills the upper area; progress and controls are pinned to the bottom.
+    /// Word fills the upper area at full notch width; controls keep side insets.
     private var reader: some View {
         VStack(spacing: 0) {
             RSVPWordView(
@@ -47,12 +49,12 @@ struct NotchContentView: View {
                 wordsBefore: engine.contextWordsBefore,
                 wordsAfter: engine.contextWordsAfter
             )
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .layoutPriority(-1)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .layoutPriority(-1)
 
             bottomBar
-                .frame(width: NotchMetrics.contentWidth)
-                .frame(maxWidth: .infinity)
+                .padding(.horizontal, sideInset)
+                .frame(width: NotchMetrics.openSize.width)
         }
     }
 
