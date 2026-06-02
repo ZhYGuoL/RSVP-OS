@@ -8,6 +8,7 @@ rsvp-reading/
 # Xcode
 DerivedData/
 build/
+dist/
 *.xcuserstate
 **/xcuserdata/
 *.xcscmblueprint

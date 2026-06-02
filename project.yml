@@ -32,3 +32,4 @@ targets:
         LSUIElement: true
         CFBundleDisplayName: RSVP-OS
         NSHumanReadableCopyright: ""
+        NSScreenCaptureUsageDescription: RSVP-OS captures the screen region you select so it can read text with on-device OCR.

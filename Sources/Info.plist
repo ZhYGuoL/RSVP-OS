@@ -24,5 +24,7 @@
 	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string></string>
+	<key>NSScreenCaptureUsageDescription</key>
+	<string>RSVP-OS captures the screen region you select so it can read text with on-device OCR.</string>
 </dict>
 </plist>
