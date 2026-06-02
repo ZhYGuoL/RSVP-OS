@@ -15,8 +15,8 @@ enum NotchMetrics {
     static let bottomInset: CGFloat = 24
 
     /// Horizontal inset — tuned to visually match bottom clearance against the
-    /// notch's rounded lower corners.
-    static let sideInset: CGFloat = 32
+    /// notch's rounded lower corners (bottomInset + ~75% of corner radius).
+    static let sideInset: CGFloat = bottomInset + openBottomCornerRadius * 0.75
 
     static let closedTopCornerRadius: CGFloat = 8
     static let closedBottomCornerRadius: CGFloat = 12
