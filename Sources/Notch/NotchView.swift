@@ -5,6 +5,7 @@ import SwiftUI
 struct NotchView: View {
     @EnvironmentObject var engine: RSVPEngine
     @EnvironmentObject var notch: NotchViewModel
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private var size: CGSize {
         notch.isOpen ? NotchMetrics.openSize : NotchMetrics.closedSize
@@ -34,7 +35,7 @@ struct NotchView: View {
             Spacer(minLength: 0)
         }
         .frame(width: NotchMetrics.windowSize.width, height: NotchMetrics.windowSize.height, alignment: .top)
-        .animation(.spring(response: 0.42, dampingFraction: 0.82), value: notch.isOpen)
+        .animation(reduceMotion ? nil : .spring(response: 0.42, dampingFraction: 0.82), value: notch.isOpen)
         .tint(.accentColor)
         .preferredColorScheme(.dark)
     }

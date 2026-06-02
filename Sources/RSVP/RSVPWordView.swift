@@ -13,7 +13,7 @@ private extension HorizontalAlignment {
 /// the horizontal center and tinted with the system accent color.
 struct RSVPWordView: View {
     let word: String
-    var fontSize: CGFloat = 48
+    var fontSize: CGFloat = 44
 
     var body: some View {
         let parts = RSVPText.splitForDisplay(word)
@@ -30,8 +30,7 @@ struct RSVPWordView: View {
                         .foregroundStyle(.primary)
                     Text(parts.orp)
                         .foregroundStyle(.tint)
-                        .fontWeight(.bold)
-                        .shadow(color: .accentColor.opacity(0.45), radius: 10)
+                        .fontWeight(.semibold)
                         .alignmentGuide(.orpCenter) { $0[HorizontalAlignment.center] }
                     Text(parts.after)
                         .foregroundStyle(.primary)
@@ -48,20 +47,20 @@ struct RSVPWordView: View {
 private struct FocusMarker: View {
     var body: some View {
         GeometryReader { geo in
-            let tick: CGFloat = 18
+            let tick: CGFloat = 14
             ZStack {
                 LinearGradient(
                     colors: [Color.accentColor, .clear],
                     startPoint: .top, endPoint: .bottom
                 )
-                .frame(width: 2, height: tick)
+                .frame(width: 1.5, height: tick)
                 .position(x: geo.size.width / 2, y: tick / 2)
 
                 LinearGradient(
                     colors: [.clear, Color.accentColor],
                     startPoint: .top, endPoint: .bottom
                 )
-                .frame(width: 2, height: tick)
+                .frame(width: 1.5, height: tick)
                 .position(x: geo.size.width / 2, y: geo.size.height - tick / 2)
             }
         }

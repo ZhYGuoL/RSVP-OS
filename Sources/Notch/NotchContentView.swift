@@ -9,10 +9,11 @@ struct NotchContentView: View {
 
     var body: some View {
         content
-            .frame(width: NotchMetrics.openSize.width, height: NotchMetrics.openSize.height)
-            .padding(.top, 16)
-            .padding(.horizontal, 22)
+            .padding(.horizontal, 20)
+            .padding(.top, 12)
             .padding(.bottom, NotchMetrics.openBottomInset)
+            .frame(width: NotchMetrics.openSize.width, height: NotchMetrics.openSize.height, alignment: .top)
+            .clipped()
             .focusable()
             .focused($keyboardFocused)
             .focusEffectDisabled()
@@ -35,20 +36,19 @@ struct NotchContentView: View {
     }
 
     private var reader: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 8) {
             RSVPWordView(word: engine.currentWord)
                 .frame(maxWidth: .infinity)
-                .frame(height: 78)
+                .frame(height: 68)
 
             progressBar
 
             controlStrip
         }
-        .frame(maxHeight: .infinity, alignment: .top)
     }
 
     private var progressBar: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: 4) {
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
                     Capsule().fill(Color.primary.opacity(0.12))
@@ -64,7 +64,7 @@ struct NotchContentView: View {
                         }
                 )
             }
-            .frame(height: 4)
+            .frame(height: 3)
 
             HStack {
                 Text("\(min(engine.index + 1, engine.words.count)) / \(engine.words.count)")
@@ -76,97 +76,91 @@ struct NotchContentView: View {
         }
     }
 
-    /// Unified transport + speed strip, styled as one cohesive bar.
+    /// Compact macOS-style transport bar: one surface, grouped with dividers.
     private var controlStrip: some View {
-        HStack(spacing: 0) {
-            HStack(spacing: 4) {
-                stripButton("backward.end.fill", help: "Previous word") { engine.step(by: -1) }
+        HStack(spacing: 10) {
+            HStack(spacing: 2) {
+                NotchIconButton("gobackward", label: "Restart") { engine.restart() }
+                NotchIconButton("backward.end.fill", label: "Previous word") { engine.step(by: -1) }
 
                 Button(action: { engine.togglePlay() }) {
                     Image(systemName: engine.isPlaying ? "pause.fill" : "play.fill")
-                        .font(.system(size: 13, weight: .semibold))
+                        .font(.system(size: 11, weight: .semibold))
                         .foregroundStyle(.white)
-                        .frame(width: 30, height: 30)
+                        .frame(width: 26, height: 26)
                         .background(Color.accentColor, in: Circle())
                 }
                 .buttonStyle(.plain)
                 .help(engine.isPlaying ? "Pause" : "Play")
+                .accessibilityLabel(engine.isPlaying ? "Pause" : "Play")
 
-                stripButton("forward.end.fill", help: "Next word") { engine.step(by: 1) }
-                stripButton("gobackward", help: "Restart") { engine.restart() }
+                NotchIconButton("forward.end.fill", label: "Next word") { engine.step(by: 1) }
             }
 
-            Spacer(minLength: 8)
+            Divider()
+                .frame(height: 18)
+                .opacity(0.35)
 
-            HStack(spacing: 6) {
-                stripButton("minus", help: "Slower") { engine.adjustWPM(by: -RSVPEngine.wpmStep) }
+            HStack(spacing: 2) {
+                NotchIconButton("minus", label: "Decrease speed") {
+                    engine.adjustWPM(by: -RSVPEngine.wpmStep)
+                }
 
                 Text("\(Int(engine.wpm)) wpm")
                     .font(.caption)
                     .foregroundStyle(.secondary)
-                    .frame(minWidth: 58)
+                    .frame(minWidth: 52)
+                    .multilineTextAlignment(.center)
 
-                stripButton("plus", help: "Faster") { engine.adjustWPM(by: RSVPEngine.wpmStep) }
+                NotchIconButton("plus", label: "Increase speed") {
+                    engine.adjustWPM(by: RSVPEngine.wpmStep)
+                }
             }
-            .padding(.horizontal, 10)
-            .padding(.vertical, 4)
-            .background(Color.primary.opacity(0.08), in: Capsule())
 
-            Spacer(minLength: 8)
+            Spacer(minLength: 0)
 
-            stripButton("xmark", help: "Close") { AppController.shared?.closeNotch() }
+            NotchIconButton("xmark", label: "Close reader") {
+                AppController.shared?.closeNotch()
+            }
         }
+        .frame(height: 30)
         .padding(.horizontal, 10)
-        .padding(.vertical, 6)
-        .background(Color.primary.opacity(0.06), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
-    }
-
-    private func stripButton(_ systemName: String, help: String, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Image(systemName: systemName)
-                .font(.system(size: 12, weight: .medium))
-                .foregroundStyle(.primary.opacity(0.9))
-                .frame(width: 28, height: 28)
-                .contentShape(Rectangle())
-        }
-        .buttonStyle(.plain)
-        .help(help)
+        .background(Color.primary.opacity(0.06), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
     }
 
     private func statusView(systemImage: String, text: String) -> some View {
         VStack(spacing: 10) {
             Image(systemName: systemImage)
-                .font(.system(size: 26))
+                .font(.title3)
                 .foregroundStyle(.secondary)
             Text(text)
-                .font(.subheadline.weight(.medium))
+                .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private func progressView(text: String) -> some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 10) {
             ProgressView()
-                .controlSize(.regular)
-                .tint(.accentColor)
+                .controlSize(.small)
             Text(text)
-                .font(.subheadline.weight(.medium))
+                .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private func messageView(_ message: String) -> some View {
-        VStack(spacing: 14) {
+        VStack(spacing: 12) {
             Image(systemName: "exclamationmark.triangle")
-                .font(.system(size: 24))
+                .font(.title3)
                 .foregroundStyle(.yellow)
             Text(message)
                 .font(.subheadline)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.secondary)
-            HStack(spacing: 12) {
+            HStack(spacing: 10) {
                 Button("Open Settings") {
                     AppController.shared?.openScreenRecordingSettings()
                 }
@@ -179,7 +173,7 @@ struct NotchContentView: View {
             .controlSize(.small)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.horizontal, 20)
+        .padding(.horizontal, 16)
     }
 
     private func handleKey(_ press: KeyPress) -> KeyPress.Result {
@@ -207,5 +201,35 @@ struct NotchContentView: View {
             }
             return .ignored
         }
+    }
+}
+
+/// Compact icon control with hover feedback, sized for the notch bar.
+private struct NotchIconButton: View {
+    let systemName: String
+    let label: String
+    let action: () -> Void
+
+    @State private var isHovered = false
+
+    init(_ systemName: String, label: String, action: @escaping () -> Void) {
+        self.systemName = systemName
+        self.label = label
+        self.action = action
+    }
+
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: systemName)
+                .font(.system(size: 11, weight: .medium))
+                .foregroundStyle(.primary.opacity(isHovered ? 1 : 0.85))
+                .frame(width: 26, height: 26)
+                .background(isHovered ? Color.primary.opacity(0.1) : .clear, in: RoundedRectangle(cornerRadius: 6))
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .help(label)
+        .accessibilityLabel(label)
+        .onHover { isHovered = $0 }
     }
 }
