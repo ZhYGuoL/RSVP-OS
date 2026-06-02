@@ -55,49 +55,57 @@ struct NotchContentView: View {
     }
 
     private var progressBar: some View {
-        VStack(spacing: 6) {
-            GeometryReader { geo in
-                ZStack(alignment: .leading) {
-                    Capsule().fill(Color.primary.opacity(0.1))
-                    Capsule()
-                        .fill(Color.accentColor)
-                        .frame(width: max(0, geo.size.width * engine.progress))
-                }
-                .contentShape(Rectangle())
-                .gesture(
-                    DragGesture(minimumDistance: 0)
-                        .onChanged { value in
-                            engine.seek(to: value.location.x / geo.size.width)
-                        }
-                )
-            }
-            .frame(height: 2)
+        VStack(spacing: 8) {
+            compactProgressTrack
+                .frame(width: 160)
+                .frame(maxWidth: .infinity)
 
             HStack {
                 Text("\(min(engine.index + 1, engine.words.count)) of \(engine.words.count)")
                 Spacer()
                 Text(engine.timeRemaining)
             }
-            .font(.caption2)
-            .foregroundStyle(.tertiary)
+            .font(.caption)
+            .foregroundStyle(.secondary)
+            .monospacedDigit()
         }
+    }
+
+    /// Short centered pill — not edge-to-edge.
+    private var compactProgressTrack: some View {
+        GeometryReader { geo in
+            ZStack(alignment: .leading) {
+                Capsule().fill(Color.primary.opacity(0.14))
+                Capsule()
+                    .fill(Color.accentColor)
+                    .frame(width: max(0, geo.size.width * engine.progress))
+            }
+            .contentShape(Rectangle())
+            .gesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { value in
+                        engine.seek(to: value.location.x / geo.size.width)
+                    }
+            )
+        }
+        .frame(height: 3)
     }
 
     /// Transport left, close right, WPM truly centered via overlay.
     private var controlStrip: some View {
         ZStack {
             HStack(spacing: 6) {
-                NotchControlButton("minus", label: "Slower", size: 10) {
+                NotchControlButton("minus", label: "Slower", size: 11) {
                     engine.adjustWPM(by: -RSVPEngine.wpmStep)
                 }
 
                 Text("\(Int(engine.wpm)) wpm")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .font(.caption.weight(.medium))
+                    .foregroundStyle(.primary.opacity(0.85))
                     .monospacedDigit()
                     .frame(minWidth: 64)
 
-                NotchControlButton("plus", label: "Faster", size: 10) {
+                NotchControlButton("plus", label: "Faster", size: 11) {
                     engine.adjustWPM(by: RSVPEngine.wpmStep)
                 }
             }
@@ -125,7 +133,7 @@ struct NotchContentView: View {
 
                 Spacer(minLength: 0)
 
-                NotchControlButton("xmark", label: "Close", size: 10, emphasis: .subtle) {
+                NotchControlButton("xmark", label: "Close", size: 11, emphasis: .subtle) {
                     AppController.shared?.closeNotch()
                 }
             }
@@ -245,8 +253,8 @@ private struct NotchControlButton: View {
 
     private var baseOpacity: Double {
         switch emphasis {
-        case .normal: 0.7
-        case .subtle: 0.5
+        case .normal: 0.88
+        case .subtle: 0.72
         }
     }
 
@@ -254,7 +262,7 @@ private struct NotchControlButton: View {
         Button(action: action) {
             Image(systemName: systemName)
                 .font(.system(size: size, weight: .medium))
-                .foregroundStyle(.secondary.opacity(isHovered ? 0.95 : baseOpacity))
+                .foregroundStyle(.primary.opacity(isHovered ? 1 : baseOpacity))
                 .frame(width: 22, height: 22)
                 .contentShape(Rectangle())
         }
