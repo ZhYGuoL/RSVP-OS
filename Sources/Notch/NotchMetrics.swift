@@ -22,4 +22,9 @@ enum NotchMetrics {
     static let closedBottomCornerRadius: CGFloat = 12
     static let openTopCornerRadius: CGFloat = 14
     static let openBottomCornerRadius: CGFloat = 28
+
+    /// Width available for reader content after horizontal insets.
+    static var contentWidth: CGFloat {
+        openSize.width - sideInset * 2
+    }
 }

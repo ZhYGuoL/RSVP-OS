@@ -44,8 +44,11 @@ struct NotchContentView: View {
         VStack(spacing: 0) {
             RSVPWordView(word: engine.currentWord)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .layoutPriority(-1)
 
             bottomBar
+                .frame(width: NotchMetrics.contentWidth)
+                .frame(maxWidth: .infinity)
         }
     }
 

@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 
 private extension HorizontalAlignment {
@@ -13,33 +14,71 @@ private extension HorizontalAlignment {
 /// the horizontal center and tinted with the system accent color.
 struct RSVPWordView: View {
     let word: String
-    var fontSize: CGFloat = 44
+    var maxFontSize: CGFloat = 44
+    private let minFontSize: CGFloat = 16
 
     var body: some View {
-        let parts = RSVPText.splitForDisplay(word)
-        let font = Font.system(size: fontSize, weight: .medium, design: .monospaced)
+        GeometryReader { geo in
+            let parts = RSVPText.splitForDisplay(word)
+            let fontSize = fittedFontSize(
+                for: word,
+                maxSize: maxFontSize,
+                minSize: minFontSize,
+                maxWidth: geo.size.width
+            )
+            let font = Font.system(size: fontSize, weight: .medium, design: .monospaced)
 
-        ZStack {
-            FocusMarker()
+            ZStack {
+                FocusMarker()
 
-            ZStack(alignment: Alignment(horizontal: .orpCenter, vertical: .center)) {
-                Color.clear.frame(maxWidth: .infinity, maxHeight: 1)
+                ZStack(alignment: Alignment(horizontal: .orpCenter, vertical: .center)) {
+                    Color.clear.frame(maxWidth: .infinity, maxHeight: 1)
 
-                HStack(spacing: 0) {
-                    Text(parts.before)
-                        .foregroundStyle(.primary)
-                    Text(parts.orp)
-                        .foregroundStyle(.tint)
-                        .fontWeight(.semibold)
-                        .alignmentGuide(.orpCenter) { $0[HorizontalAlignment.center] }
-                    Text(parts.after)
-                        .foregroundStyle(.primary)
+                    HStack(spacing: 0) {
+                        Text(parts.before)
+                            .foregroundStyle(.primary)
+                        Text(parts.orp)
+                            .foregroundStyle(.tint)
+                            .fontWeight(.semibold)
+                            .alignmentGuide(.orpCenter) { $0[HorizontalAlignment.center] }
+                        Text(parts.after)
+                            .foregroundStyle(.primary)
+                    }
+                    .font(font)
+                    .lineLimit(1)
                 }
-                .font(font)
-                .lineLimit(1)
-                .fixedSize()
+            }
+            .frame(width: geo.size.width, height: geo.size.height)
+        }
+        .clipped()
+    }
+
+    /// Shrink the font until the full word fits within the available width.
+    private func fittedFontSize(
+        for word: String,
+        maxSize: CGFloat,
+        minSize: CGFloat,
+        maxWidth: CGFloat
+    ) -> CGFloat {
+        guard !word.isEmpty, maxWidth > 0 else { return maxSize }
+        if wordWidth(word, size: maxSize) <= maxWidth { return maxSize }
+
+        var lo = minSize
+        var hi = maxSize
+        while lo < hi {
+            let mid = (lo + hi + 1) / 2
+            if wordWidth(word, size: mid) <= maxWidth {
+                lo = mid
+            } else {
+                hi = mid - 1
             }
         }
+        return lo
+    }
+
+    private func wordWidth(_ word: String, size: CGFloat) -> CGFloat {
+        let font = NSFont.monospacedSystemFont(ofSize: size, weight: .medium)
+        return ceil((word as NSString).size(withAttributes: [.font: font]).width)
     }
 }
 
