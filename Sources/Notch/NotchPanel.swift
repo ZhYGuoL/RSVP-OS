@@ -37,4 +37,11 @@ final class NotchPanel: NSPanel {
 
     override var canBecomeKey: Bool { true }
     override var canBecomeMain: Bool { false }
+
+    override func becomeKey() {
+        super.becomeKey()
+        if let view = contentView, view.acceptsFirstResponder {
+            makeFirstResponder(view)
+        }
+    }
 }

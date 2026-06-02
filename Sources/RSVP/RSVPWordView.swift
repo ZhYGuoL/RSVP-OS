@@ -1,16 +1,10 @@
 import SwiftUI
 
-private extension HorizontalAlignment {
-    enum ORPCenter: AlignmentID {
-        static func defaultValue(in context: ViewDimensions) -> CGFloat {
-            context[HorizontalAlignment.center]
-        }
-    }
-    static let orpCenter = HorizontalAlignment(ORPCenter.self)
-}
-
 /// Renders the focused RSVP word with ORP centered, plus faded context words
 /// before and after. Uses a fixed font size; overflow is clipped at the notch.
+///
+/// Layout mirrors the reference web app: the ORP letter is pinned to the
+/// horizontal center; before/after text grow outward and clip at the notch edges.
 struct RSVPWordView: View {
     let word: String
     var wordsBefore: [String] = []
@@ -19,28 +13,47 @@ struct RSVPWordView: View {
     /// Single fixed size — no per-word scaling.
     private let fontSize: CGFloat = 36
 
+    /// Half a monospaced character width (~0.5ch in the reference CSS).
+    private var halfChar: CGFloat { fontSize * 0.3 }
+
     var body: some View {
         GeometryReader { geo in
             let parts = RSVPText.splitForDisplay(word)
             let font = Font.system(size: fontSize, weight: .medium, design: .monospaced)
-            let orpWidth = fontSize * 0.55
+            let sideWidth = max(0, geo.size.width / 2 - halfChar)
 
             ZStack {
                 FocusMarker()
 
-                ZStack(alignment: Alignment(horizontal: .orpCenter, vertical: .center)) {
-                    Color.clear.frame(maxWidth: .infinity, maxHeight: 1)
+                HStack(spacing: 0) {
+                    // Left pane: before text grows left from center − 0.5ch.
+                    HStack(spacing: 0) {
+                        Spacer(minLength: 0)
+                        beforeContent(parts: parts, font: font)
+                            .fixedSize(horizontal: true, vertical: false)
+                    }
+                    .frame(width: sideWidth, alignment: .trailing)
+                    .clipped()
 
-                    Text(parts.orp)
-                        .font(font)
-                        .foregroundStyle(.tint)
-                        .fontWeight(.semibold)
-                        .alignmentGuide(.orpCenter) { $0[HorizontalAlignment.center] }
+                    // Gap reserved for the ORP letter at the exact center.
+                    Color.clear.frame(width: halfChar * 2)
 
-                    beforeORP(parts: parts, font: font, orpWidth: orpWidth)
-                    afterORP(parts: parts, font: font, orpWidth: orpWidth)
+                    // Right pane: after text grows right from center + 0.5ch.
+                    HStack(spacing: 0) {
+                        afterContent(parts: parts, font: font)
+                            .fixedSize(horizontal: true, vertical: false)
+                        Spacer(minLength: 0)
+                    }
+                    .frame(width: sideWidth, alignment: .leading)
+                    .clipped()
                 }
-                .fixedSize(horizontal: true, vertical: false)
+
+                // ORP always at the exact horizontal center.
+                Text(parts.orp)
+                    .font(font)
+                    .foregroundStyle(.tint)
+                    .fontWeight(.semibold)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .frame(width: geo.size.width, height: geo.size.height)
             .clipped()
@@ -49,10 +62,9 @@ struct RSVPWordView: View {
     }
 
     @ViewBuilder
-    private func beforeORP(
+    private func beforeContent(
         parts: (before: String, orp: String, after: String),
-        font: Font,
-        orpWidth: CGFloat
+        font: Font
     ) -> some View {
         HStack(spacing: 0) {
             if !wordsBefore.isEmpty {
@@ -66,16 +78,12 @@ struct RSVPWordView: View {
         }
         .font(font)
         .lineLimit(1)
-        .alignmentGuide(.orpCenter) { dimensions in
-            dimensions[HorizontalAlignment.trailing] + orpWidth * 0.5
-        }
     }
 
     @ViewBuilder
-    private func afterORP(
+    private func afterContent(
         parts: (before: String, orp: String, after: String),
-        font: Font,
-        orpWidth: CGFloat
+        font: Font
     ) -> some View {
         HStack(spacing: 0) {
             Text(parts.after)
@@ -89,9 +97,6 @@ struct RSVPWordView: View {
         }
         .font(font)
         .lineLimit(1)
-        .alignmentGuide(.orpCenter) { dimensions in
-            dimensions[HorizontalAlignment.leading] - orpWidth * 0.5
-        }
     }
 
     private var contextColor: Color {

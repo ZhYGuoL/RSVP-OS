@@ -21,7 +21,13 @@ struct NotchContentView: View {
             .focused($keyboardFocused)
             .focusEffectDisabled()
             .onKeyPress { press in handleKey(press) }
-            .onAppear { keyboardFocused = true }
+            .onAppear { claimKeyboardFocus() }
+            .onChange(of: notch.isOpen) { _, isOpen in
+                if isOpen { claimKeyboardFocus() }
+            }
+            .onChange(of: notch.status) { _, _ in
+                claimKeyboardFocus()
+            }
     }
 
     @ViewBuilder
@@ -197,6 +203,13 @@ struct NotchContentView: View {
             .controlSize(.small)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private func claimKeyboardFocus() {
+        DispatchQueue.main.async {
+            keyboardFocused = true
+            AppController.shared?.focusNotchPanel()
+        }
     }
 
     private func handleKey(_ press: KeyPress) -> KeyPress.Result {

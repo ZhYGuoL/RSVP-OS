@@ -17,6 +17,7 @@ final class AppController {
     private var panel: NotchPanel?
     private var pipelineTask: Task<Void, Never>?
     private var closeTask: Task<Void, Never>?
+    private var keyMonitor: Any?
 
     init() {
         AppController.shared = self
@@ -66,6 +67,7 @@ final class AppController {
                 }
                 self.engine.load(text: trimmed)
                 self.notchVM.status = .reading
+                self.focusNotchPanel()
             } catch {
                 let message = (error as? LocalizedError)?.errorDescription
                     ?? "Something went wrong while reading the screen."
@@ -81,12 +83,24 @@ final class AppController {
         engine.stop()
         notchVM.isOpen = false
         notchVM.status = .idle
+        removeKeyMonitor()
 
         closeTask?.cancel()
         closeTask = Task { [weak self] in
             try? await Task.sleep(nanoseconds: 500_000_000)
             guard !Task.isCancelled else { return }
             self?.panel?.orderOut(nil)
+        }
+    }
+
+    /// Brings the notch panel to the front and makes it the key window so keyboard
+    /// shortcuts work without clicking a control first.
+    func focusNotchPanel() {
+        guard let panel else { return }
+        NSApp.activate(ignoringOtherApps: true)
+        panel.makeKeyAndOrderFront(nil)
+        if let view = panel.contentView, view.acceptsFirstResponder {
+            panel.makeFirstResponder(view)
         }
     }
 
@@ -100,19 +114,41 @@ final class AppController {
         closeTask?.cancel()
         let panel = ensurePanel()
         position(panel, on: screen)
+        installKeyMonitor()
         notchVM.isOpen = false
-        panel.orderFrontRegardless()
-        panel.makeKey()
+        focusNotchPanel()
         // Defer opening one runloop tick so the spring animates the drop-down.
         DispatchQueue.main.async { [weak self] in
             self?.notchVM.isOpen = true
+            self?.focusNotchPanel()
         }
     }
 
     private func closeNotchImmediately() {
         notchVM.isOpen = false
         notchVM.status = .idle
+        removeKeyMonitor()
         panel?.orderOut(nil)
+    }
+
+    private func installKeyMonitor() {
+        guard keyMonitor == nil else { return }
+        keyMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
+            guard let self else { return event }
+            guard self.notchVM.isOpen, self.panel?.isVisible == true else { return event }
+            guard self.panel?.isKeyWindow == true || NSApp.isActive else { return event }
+            if NotchKeyboard.handle(event, engine: self.engine, notch: self.notchVM) {
+                return nil
+            }
+            return event
+        }
+    }
+
+    private func removeKeyMonitor() {
+        if let keyMonitor {
+            NSEvent.removeMonitor(keyMonitor)
+            self.keyMonitor = nil
+        }
     }
 
     private func ensurePanel() -> NotchPanel {
@@ -128,10 +164,12 @@ final class AppController {
             backing: .buffered,
             defer: false
         )
-        let root = NotchView()
-            .environmentObject(engine)
-            .environmentObject(notchVM)
-        panel.contentView = NSHostingView(rootView: root)
+        let root = AnyView(
+            NotchView()
+                .environmentObject(engine)
+                .environmentObject(notchVM)
+        )
+        panel.contentView = NotchHostingView(rootView: root)
         self.panel = panel
         return panel
     }
