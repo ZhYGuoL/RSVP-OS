@@ -8,9 +8,9 @@ A native macOS menu bar app that turns any on-screen text into fast RSVP reading
 
 Get the latest build from [Releases](https://github.com/ZhYGuoL/RSVP-OS/releases/latest):
 
-1. Download `RSVP-OS-1.0.0-macOS.zip`
-2. Unzip and drag **RSVP-OS.app** into Applications
-3. Open the app (see [First launch](#first-launch) below)
+1. Download `RSVP-OS-*-macOS.dmg` (or the `.zip` fallback)
+2. Open the DMG and drag **RSVP-OS** to Applications
+3. Launch the app (see [First launch](#first-launch) below)
 
 ## Quick start
 
@@ -45,6 +45,20 @@ xcodebuild -project RSVP-OS.xcodeproj -scheme RSVP-OS -configuration Release bui
 ```
 
 The app bundle is written to `build/DerivedData/Build/Products/Release/RSVP-OS.app`.
+
+### Signed release (no Gatekeeper warning)
+
+Public downloads must be signed with a **Developer ID Application** certificate and notarized by Apple:
+
+```bash
+brew install xcodegen create-dmg
+export APPLE_ID="you@example.com"
+export APPLE_APP_SPECIFIC_PASSWORD="xxxx-xxxx-xxxx-xxxx"
+export APPLE_TEAM_ID="YOUR_TEAM_ID"
+./Scripts/package-release.sh
+```
+
+Add the same values as GitHub Actions secrets (`APPLE_ID`, `APPLE_APP_SPECIFIC_PASSWORD`, `APPLE_TEAM_ID`, `APPLE_CERTIFICATE_BASE64`, `APPLE_CERTIFICATE_PASSWORD`, `DEVELOPER_ID_APPLICATION`) to produce signed releases on tag push.
 
 ## License
 

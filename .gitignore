@@ -4,6 +4,7 @@ rsvp-reading/
 
 # macOS
 .DS_Store
+Gemini_Generated_Image_*.png
 
 # Xcode
 DerivedData/

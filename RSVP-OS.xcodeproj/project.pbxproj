@@ -21,6 +21,7 @@
 		A52B29FF0CB308F1B1CF1FF6 /* NotchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2D86D68388A8B281109FBD /* NotchViewModel.swift */; };
 		A78395C4F95362750A442F51 /* NotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C5442603E47C11E62FA780 /* NotchView.swift */; };
 		C441D7F2538077C088FF8EF1 /* RSVP_OSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1BE36387430A2E7DF2C706 /* RSVP_OSApp.swift */; };
+		C6E74A56DC4EDCF2F9C02CAC /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B53D55ABFB5CFBA04C02A0 /* logo.png */; };
 		D2D4AAD8DE5C5F94988BEA22 /* NotchMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1FC25129FFF2CA08BECF1 /* NotchMetrics.swift */; };
 		D5371169F627703ADB435A7B /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1421DB84EF008BB9D3250A /* AppController.swift */; };
 		F1B0D80BBA7C9C85C7D2354F /* RSVPWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA130F8C60E89D897CD26570 /* RSVPWordView.swift */; };
@@ -33,6 +34,7 @@
 		064F2F493D48937E8DD1B237 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0A0325B44C43C8FD53EA484C /* RegionSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelector.swift; sourceTree = "<group>"; };
 		0F32CDEDBBF59CCFADB553A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3D45CC2CE71ED2362BBFD1D0 /* RSVP-OS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RSVP-OS.entitlements"; sourceTree = "<group>"; };
 		5656DD5529F7E386C7EF3352 /* NotchShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchShape.swift; sourceTree = "<group>"; };
 		5A47B2568B08A3F3519889A8 /* NotchPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchPanel.swift; sourceTree = "<group>"; };
 		5AD54755B1EC707D6328A3BF /* NotchKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchKeyboard.swift; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 		E9952E68B38DDE10781C0C4B /* GlobalHotkey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotkey.swift; sourceTree = "<group>"; };
 		EA130F8C60E89D897CD26570 /* RSVPWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSVPWordView.swift; sourceTree = "<group>"; };
 		EAE828390F426256F96762EA /* TextRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizer.swift; sourceTree = "<group>"; };
+		F4B53D55ABFB5CFBA04C02A0 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		F782775EEB12FEDE5912CBB9 /* RSVP-OS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RSVP-OS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8C5442603E47C11E62FA780 /* NotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,7 +71,9 @@
 			children = (
 				9700B08A4B822A0F92D9465F /* Assets.xcassets */,
 				064F2F493D48937E8DD1B237 /* Info.plist */,
+				3D45CC2CE71ED2362BBFD1D0 /* RSVP-OS.entitlements */,
 				EF4183FA8360365D421E6495 /* App */,
+				BA8CA7DF5533642C7D6E5F11 /* Assets */,
 				8C3C6E34D1A274084F4EB0B2 /* Capture */,
 				E6EE8C1EFC1EF7B7F68F7040 /* Hotkey */,
 				1855268B5B77810B1C62D288 /* Notch */,
@@ -93,6 +98,14 @@
 			path = Notch;
 			sourceTree = "<group>";
 		};
+		1D6FEDE1B2EEEE2F9E0BB261 /* branding */ = {
+			isa = PBXGroup;
+			children = (
+				F4B53D55ABFB5CFBA04C02A0 /* logo.png */,
+			);
+			path = branding;
+			sourceTree = "<group>";
+		};
 		8C3C6E34D1A274084F4EB0B2 /* Capture */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +124,14 @@
 				EA130F8C60E89D897CD26570 /* RSVPWordView.swift */,
 			);
 			path = RSVP;
+			sourceTree = "<group>";
+		};
+		BA8CA7DF5533642C7D6E5F11 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				1D6FEDE1B2EEEE2F9E0BB261 /* branding */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		CD62AE3DC897C37EFE35A019 /* OCR */ = {
@@ -207,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C013103C627ED033C5B1B6B /* Assets.xcassets in Resources */,
+				C6E74A56DC4EDCF2F9C02CAC /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +268,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Sources/RSVP-OS.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sources/Info.plist;
@@ -295,7 +318,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -315,7 +338,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -363,7 +386,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -377,7 +400,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -392,6 +415,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Sources/RSVP-OS.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sources/Info.plist;
